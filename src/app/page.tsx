@@ -1,115 +1,271 @@
 import Image from "next/image";
 import nextConfig from "../../next.config.mjs";
 const BASE_PATH = nextConfig.basePath || "";
-
+const navigation = [
+  { name: "Projects", href: "#", current: false },
+  { name: "Deployments", href: "#", current: true },
+  { name: "Activity", href: "#", current: false },
+  { name: "Domains", href: "#", current: false },
+  { name: "Usage", href: "#", current: false },
+  { name: "Settings", href: "#", current: false },
+];
+const info = [
+  {
+    name: "tel",
+    element: "<a href='tel:123-456-7890'>Tel.123-456-7890</a>",
+    text: "Call us",
+  },
+  { name: "a", element: "<span>Open. 10:00 - 17:00</span>", text: "Support" },
+  { name: "b", element: "<span>Close. Thursday, Friday</span>", text: "Chat" },
+];
+const pricingTable = [
+  { breed: "チワワ", type: "スムース", shampoo: "5,500円～", cut: "" },
+  { breed: "", type: "ロング", shampoo: "6,050円～", cut: "7,700円～" },
+  {
+    breed: "ミニチュア・ダックスフント",
+    type: "スムース",
+    shampoo: "6,050円～",
+    cut: "",
+  },
+  { breed: "", type: "ロング", shampoo: "6,600円～", cut: "8,250円～" },
+  {
+    breed: "ミニチュア・ピンシャー、イタグレ",
+    type: "",
+    shampoo: "6,600円～",
+    cut: "",
+  },
+  {
+    breed: "フレンチブルドッグ、パグ",
+    type: "",
+    shampoo: "7,150円～",
+    cut: "",
+  },
+  { breed: "パピヨン", type: "", shampoo: "6,600円～", cut: "8,250円～" },
+  {
+    breed: "ヨークシャテリア",
+    type: "",
+    shampoo: "6,600円～",
+    cut: "8,800円～",
+  },
+  {
+    breed: "マルチーズ、シーズー",
+    type: "",
+    shampoo: "7,150円～",
+    cut: "9,350円～",
+  },
+  {
+    breed: "ペキニーズ、ポメラニアン",
+    type: "",
+    shampoo: "7,150円～",
+    cut: "8,800円～",
+  },
+];
 export default function Home() {
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24">
-      <div className="z-10 w-full max-w-5xl items-center justify-between font-mono text-sm lg:flex">
-        <p className="fixed left-0 top-0 flex w-full justify-center border-b border-gray-300 bg-gradient-to-b from-zinc-200 pb-6 pt-8 backdrop-blur-2xl dark:border-neutral-800 dark:bg-zinc-800/30 dark:from-inherit lg:static lg:w-auto  lg:rounded-xl lg:border lg:bg-gray-200 lg:p-4 lg:dark:bg-zinc-800/30">
-          Get started by editing&nbsp;
-          <code className="font-mono font-bold">src/app/page.tsx</code>
-        </p>
-        <div className="fixed bottom-0 left-0 flex h-48 w-full items-end justify-center bg-gradient-to-t from-white via-white dark:from-black dark:via-black lg:static lg:size-auto lg:bg-none">
-          <a
-            className="pointer-events-none flex place-items-center gap-2 p-8 lg:pointer-events-auto lg:p-0"
-            href="https://vercel.com?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            By{" "}
+    <>
+      <nav className="flex overflow-x-auto border-b border-white/10 py-4">
+        <ul
+          role="list"
+          className="flex min-w-full flex-none gap-x-6 px-4 text-sm font-semibold leading-6 text-gray-400 sm:px-6 lg:px-8"
+        >
+          {navigation.map((item) => (
+            <li key={item.name}>
+              <a
+                href={item.href}
+                className={`${
+                  item.current
+                    ? "from-sky-200 to-blue-200"
+                    : "from-white to-transparent"
+                }`}
+              >
+                {item.name}
+              </a>
+            </li>
+          ))}
+        </ul>
+      </nav>
+      <main className="flex min-h-screen flex-col items-center justify-between p-24">
+        <div className="flex justify-between items-center w-full">
+          <div className="flex items-center w-full flex-col  mb-28">
             <Image
-              src={`${BASE_PATH}/vercel.svg`}
-              alt="Vercel Logo"
-              className="dark:invert"
-              width={100}
-              height={24}
-              priority
+              src={`${BASE_PATH}/sample_01.svg`}
+              alt="Logo"
+              width={160}
+              height={300}
+              className="w-160 h-300 mb-28"
             />
-          </a>
+            <Image
+              src={`${BASE_PATH}/sample_02.svg`}
+              alt="Logo"
+              width={160}
+              height={300}
+              className="w-160 h-300"
+            />
+          </div>
+          <div className="flex-col items-center  w-full">
+            <ul className="flex gap-x-4">
+              {info.map((item) => (
+                <li
+                  key={item.name}
+                  dangerouslySetInnerHTML={{ __html: item.element }}
+                />
+              ))}
+            </ul>
+            <Image
+              src={`${BASE_PATH}/sample_02.svg`}
+              alt="Logo"
+              width={640}
+              height={640}
+            />
+          </div>
         </div>
-      </div>
-
-      <div className="relative z-[-1] flex place-items-center before:absolute before:h-[300px] before:w-full before:-translate-x-1/2 before:rounded-full before:bg-gradient-radial before:from-white before:to-transparent before:blur-2xl before:content-[''] after:absolute after:-z-20 after:h-[180px] after:w-full after:translate-x-1/3 after:bg-gradient-conic after:from-sky-200 after:via-blue-200 after:blur-2xl after:content-[''] before:dark:bg-gradient-to-br before:dark:from-transparent before:dark:to-blue-700 before:dark:opacity-10 after:dark:from-sky-900 after:dark:via-[#0141ff] after:dark:opacity-40 sm:before:w-[480px] sm:after:w-[240px] before:lg:h-[360px]">
-        <Image
-          className="relative dark:drop-shadow-[0_0_0.3rem_#ffffff70] dark:invert"
-          src={`${BASE_PATH}/next.svg`}
-          alt="Next.js Logo"
-          width={180}
-          height={37}
-          priority
-        />
-      </div>
-
-      <div className="mb-32 grid text-center lg:mb-0 lg:w-full lg:max-w-5xl lg:grid-cols-4 lg:text-left">
-        <a
-          href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className="mb-3 text-2xl font-semibold">
-            Docs{" "}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className="m-0 max-w-[30ch] text-sm opacity-50">
-            Find in-depth information about Next.js features and API.
-          </p>
-        </a>
-
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className="mb-3 text-2xl font-semibold">
-            Learn{" "}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className="m-0 max-w-[30ch] text-sm opacity-50">
-            Learn about Next.js in an interactive course with&nbsp;quizzes!
-          </p>
-        </a>
-
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className="mb-3 text-2xl font-semibold">
-            Templates{" "}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className="m-0 max-w-[30ch] text-sm opacity-50">
-            Explore starter templates for Next.js.
-          </p>
-        </a>
-
-        <a
-          href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className="mb-3 text-2xl font-semibold">
-            Deploy{" "}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className="m-0 max-w-[30ch] text-balance text-sm opacity-50">
-            Instantly deploy your Next.js site to a shareable URL with Vercel.
-          </p>
-        </a>
-      </div>
-    </main>
+        <div className="flex justify-between items-center w-full">
+          <div className="flex items-center w-full flex-col">
+            <Image
+              src={`${BASE_PATH}/sample_01.svg`}
+              alt="Logo"
+              width={160}
+              height={300}
+              className="w-160 h-300 mb-28"
+            />
+          </div>
+          <div className="flex-col items-center  w-full">
+            <h2 className="text-4xl font-bold">Title</h2>
+            <p className="text-lg font-medium">
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do
+              eiusmod tempor incididunt ut labore et dolore magna aliqua.
+            </p>
+          </div>
+        </div>
+        <div className="flex justify-between items-center w-full">
+          <Image
+            src={`${BASE_PATH}/sample_02.svg`}
+            alt="Logo"
+            width={640}
+            height={640}
+          />
+          <div className="flex items-center w-full flex-col">
+            <Image
+              src={`${BASE_PATH}/sample_02.svg`}
+              alt="Logo"
+              width={320}
+              height={320}
+              className="w-160 h-300 mb-28"
+            />
+            <Image
+              src={`${BASE_PATH}/sample_02.svg`}
+              alt="Logo"
+              width={320}
+              height={320}
+              className="w-160 h-300 mb-28"
+            />
+          </div>
+        </div>
+        <div className="flex justify-between items-center w-full">
+          <div className="flex items-center w-full flex-col mr-24">
+            <h2 className="text-4xl font-bold mb-6">料金表</h2>
+            <table className="w-full text-left border-collapse">
+              <thead>
+                <tr>
+                  <th className="border-b py-2">Price</th>
+                  <th className="border-b py-2">Shampoo</th>
+                  <th className="border-b py-2">Cut</th>
+                </tr>
+              </thead>
+              <tbody>
+                {pricingTable.map((item, index) => (
+                  <tr key={index}>
+                    <td className="border-b py-2">{item.breed}</td>
+                    <td className="border-b py-2">{item.type}</td>
+                    <td className="border-b py-2">{item.shampoo}</td>
+                    <td className="border-b py-2">{item.cut}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+          <div className="flex items-center w-full flex-col">
+            <h2 className="text-4xl font-bold mb-6">Option</h2>
+            <table className="w-full text-left border-collapse">
+              <thead>
+                <tr>
+                  <th className="border-b py-2">Price</th>
+                  <th className="border-b py-2">Shampoo</th>
+                  <th className="border-b py-2">Cut</th>
+                </tr>
+              </thead>
+              <tbody>
+                {pricingTable.map((item, index) => (
+                  <tr key={index}>
+                    <td className="border-b py-2">{item.breed}</td>
+                    <td className="border-b py-2">{item.type}</td>
+                    <td className="border-b py-2">{item.shampoo}</td>
+                    <td className="border-b py-2">{item.cut}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <div className="flex justify-between items-center w-full">
+          <div className="items-center w-full">
+            <h2 className="text-4xl font-bold">Access</h2>
+            <div className="w-full">
+              <dl className="space-y-2">
+                <div className="flex">
+                  <dt className="w-1/3 text-lg font-semibold">店名</dt>
+                  <dd className="w-2/3 text-lg font-medium">
+                    ドッグサロンペティ
+                  </dd>
+                </div>
+                <div className="flex">
+                  <dt className="w-1/3 text-lg font-semibold">住所</dt>
+                  <dd className="w-2/3 text-lg font-medium">
+                    富山県富山市堀353
+                  </dd>
+                </div>
+                <div className="flex">
+                  <dt className="w-1/3 text-lg font-semibold">営業時間</dt>
+                  <dd className="w-2/3 text-lg font-medium">10:00～17:00</dd>
+                </div>
+                <div className="flex">
+                  <dt className="w-1/3 text-lg font-semibold">定休日</dt>
+                  <dd className="w-2/3 text-lg font-medium">毎週木・金</dd>
+                </div>
+                <div className="flex">
+                  <dt className="w-1/3 text-lg font-semibold">
+                    クレジットカード
+                  </dt>
+                  <dd className="w-2/3 text-lg font-medium">VISA、JCB</dd>
+                </div>
+                <div className="flex">
+                  <dt className="w-1/3 text-lg font-semibold">駐車場</dt>
+                  <dd className="w-2/3 text-lg font-medium">4台</dd>
+                </div>
+              </dl>
+            </div>
+          </div>
+          <div className="flex-col items-center w-full">
+            <h2 className="text-4xl font-bold">Title</h2>
+            <p className="text-lg font-medium">
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do
+              eiusmod tempor incididunt ut labore et dolore magna aliqua.
+            </p>
+          </div>
+        </div>
+        <div className="z-10 w-full max-w-5xl items-center justify-between font-mono text-sm lg:flex">
+          <div className="flex items-center justify-between gap-x-4">
+            <div className="flex items-center gap-x-4">
+              <button className="text-sm font-semibold">Create</button>
+              <button className="text-sm font-semibold">Import</button>
+            </div>
+          </div>
+          <div className="flex items-center gap-x-4">
+            <button className="text-sm font-semibold">Notifications</button>
+            <button className="text-sm font-semibold">Profile</button>
+          </div>
+        </div>
+      </main>
+    </>
   );
 }
